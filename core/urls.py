@@ -6,5 +6,4 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('contato/', views.contact, name='contact'),
     path('produto/', views.product, name='product'),
-    path('produtos/', views.products, name='products'),
 ]

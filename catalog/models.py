@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField('Nome', max_length=100)
@@ -15,6 +16,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name    
 
+    def get_absolute_url(self):
+        return reverse('catalog:category', kwargs={'slug': self.slug})    
+
 class Product(models.Model):
     name = models.CharField('Nome', max_length=100)
     slug = models.SlugField('Identificador', max_length=100)
@@ -24,7 +28,7 @@ class Product(models.Model):
 
 
     created = models.DateTimeField('Criado em', auto_now_add=True)
-    modified = models.DateTimeField('Modificado em', auto_now=True)            
+    modified = models.DateTimeField('Modificado em', auto_now=True)         
 
     class Meta:
         verbose_name = 'Produto'
@@ -33,5 +37,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name    
+
+    def get_absolute_url(self):
+        return reverse('catalog:productdetail', kwargs={'slug': self.slug})        
     
 

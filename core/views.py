@@ -11,6 +11,3 @@ def contact(request):
 
 def product(request):
     return render(request, 'product.html')       
-
-def products(request):
-    return render(request, 'products.html')         
