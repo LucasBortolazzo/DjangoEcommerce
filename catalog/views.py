@@ -1,15 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from model_mommy import mommy
 
 from .models import Product, Category
 from django.db import connection
 
 
 class ProductListView(generic.ListView):
+
+    #mommy.make('catalog.Product', _quantity= 100)
+
     template_name = 'catalog/product_list.html'
     context_object_name = 'products'
-    queryset = Product.objects.all()
     paginate_by = 2
+    queryset = Product.objects.all()
+    print(f'query:  {queryset.query}')
     #model = Product
 
 
@@ -19,10 +24,12 @@ class CategoryListView(generic.ListView):
 
     template_name = 'catalog/category.html' 
     context_object_name = 'product_list'
-    paginate_by = 2
+    paginate_by = 1
 
     def get_queryset(self):
-        return Product.objects.filter(category__slug=self.kwargs['slug'])
+        produto = Product.objects.filter(category__slug=self.kwargs['slug'])
+        print(produto.query)
+        return produto
 
     def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs) 
