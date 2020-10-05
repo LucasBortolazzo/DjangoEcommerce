@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     #apps
     'core',
     'catalog',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,11 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'logout'
+AUTH_USER_MODEL = 'accounts.User'
 
 try:
     from .local_settings import *

@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, UserManager, Permission
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('Apelido/Usuário', max_length=30, unique=True, help_text='Username')
     name = models.CharField('Nome', max_length=100)
+    email = models.EmailField('Email', unique=True, default='null')
     is_staff = models.BooleanField('Equipe', default=False)
     is_active = models.BooleanField('Ativo', default=True)
     date_joined = models.DateTimeField('Data de entrada', auto_now_add=True)
@@ -15,7 +16,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         verbose_name = 'Usuário'
-        verbose_name_plurral = 'Usuários'
+        verbose_name_plural = 'Usuários'
 
     def __str__(self):
         return self.name or self.username
