@@ -1,1 +1,1 @@
-# Ecommerce com Python e Django(Em desenvolvimento)
+# E-Commerce com Python e Django(Em desenvolvimento)
