@@ -21,7 +21,7 @@ class IndexViewTestCase(TestCase):
 class ContactViewTestCase(TestCase):
     def setUp(self):
         self.client = Client()
-        self.url = reverse('contact')
+        self.url = reverse('contato')
 
     def TearDown(self):
         pass
